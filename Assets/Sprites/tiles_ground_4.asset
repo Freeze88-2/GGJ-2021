@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: _rass_eg
+  m_Name: tiles_ground_4
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 8bb68ad9815e30a47b0af0c608c61d79, type: 3}
+  m_Sprite: {fileID: -3217490386359109434, guid: 56e36a3c28c141d43b5f577557536a07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
