@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private TilemapCollider2D tile;
+    [SerializeField] private Animator  _animator;
     private Rigidbody2D rb;
     private Vector2 moveVector;
     private bool lastTurn = false;
@@ -34,6 +35,15 @@ public class Movement : MonoBehaviour
         else if (y < 0 && transform.position.y < 0)
         {
             OnStairs = false;
+        }
+
+        if (x != 0)
+        {
+            _animator.SetBool("idle", false);
+        }
+        else
+        {
+            _animator.SetBool("idle", true);
         }
 
         tile.enabled = OnStairs;
