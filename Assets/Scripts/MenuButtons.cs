@@ -8,6 +8,7 @@ public class MenuButtons : MonoBehaviour
     [SerializeField] private CanvasGroup canvas;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject img;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class MenuButtons : MonoBehaviour
         }
 
         SceneManager.LoadScene(1);
+        img.SetActive(false);
         mainMenu.SetActive(false);
         credits.SetActive(false);
         StartCoroutine(FadeOut(true));
