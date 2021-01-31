@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e1c22c2282281e45ad6ca7a989e16e3
+guid: c5a5d84e48a9aa043b5ff9df970158ab
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -224,8 +224,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -180, y: 125}
-        - {x: -180, y: -144}
-        - {x: 180, y: -144}
+        - {x: -180, y: 75}
+        - {x: 180, y: 75}
         - {x: 180, y: 126}
         - {x: -179, y: 126}
       tessellationDetail: 0

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private TilemapCollider2D tile;
     private Rigidbody2D rb;
     private Vector2 moveVector;
     private bool lastTurn = false;
@@ -18,23 +20,35 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    Vector2 dira;
     // Update is called once per frame
     private void Update()
     {
         float x = Input.GetAxis("Horizontal");
-        float y = OnStairs ? Input.GetAxis("Vertical") : 0;
+        float y = Input.GetAxis("Vertical");
 
-        if (OnStairs)
+        if (y > 0)
         {
-            moveVector = ((Vector3.right * x) + ((points.end - points.start).normalized * y)) * speed;
+            OnStairs = true;
         }
-        else
+        else if (y < 0 && transform.position.y < 0)
         {
-            moveVector = (new Vector2(x, y) * speed);
+            OnStairs = false;
         }
+
+        tile.enabled = OnStairs;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position +
+            (Vector3.down * 0.5f), Vector2.down, 10, LayerMask.GetMask("Ground"));
+        Vector2 dir = -Vector2.Perpendicular(hit.normal).normalized;
+
+        dira = dir;
+        moveVector = (dir * x) * speed;
+
+        
 
         if (!Physics2D.OverlapCircle(transform.position +
-            (Vector3.down * 0.5f), 0.1f, LayerMask.GetMask("Ground")) && !OnStairs)
+            (Vector3.down * 0.5f), 0.15f, LayerMask.GetMask("Ground")) && !OnStairs)
         {
             moveVector.y = -200f;
         }
@@ -67,5 +81,6 @@ public class Movement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position + (Vector3.down * 0.5f), 0.1f);
+        Gizmos.DrawLine(transform.position, new Vector3(dira.x, dira.y, 0) + transform.position);
     }
 }
